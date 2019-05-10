@@ -1,0 +1,16 @@
+<p>除常用方法（如getXxx/isXxx）等外，不要在条件判断中执行复杂的语句，将复杂逻辑判断的结果赋值给一个有意义的布尔变量，以提高可读性。</p>
+<p>Description:</p>
+<p>   说明：很多if语句内的逻辑相当复杂，阅读者需要分析条件表达式的最终结果，才能明确什么样的条件执行什么样的语句，那么，如果阅读者分析逻辑表达式错误呢？</p>
+<p>Examples:</p>
+<pre>
+    Negative example:
+    if ((file.open(fileName, "w") != null) && (...) || (...)) {
+        // ...
+    }
+
+    Positive example:
+    boolean existed = (file.open(fileName, "w") != null) && (...) || (...);
+    if (existed) {
+        //...
+    }
+</pre>

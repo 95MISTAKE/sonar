@@ -1,0 +1,15 @@
+<p>所有的抽象方法（包括接口中的方法）必须要用javadoc注释、除了返回值、参数、异常说明外，还必须指出该方法做什么事情，实现什么功能。</p>
+<p>Description:</p>
+<p>   说明：如有实现和调用注意事项，请一并说明。</p>
+<p>Examples:</p>
+<pre>
+    /**
+     * fetch data by rule id
+     *
+     * @param ruleId rule id
+     * @param page page number
+     * @param jsonContext json format context
+     * @return Result<XxxxDO>
+     */
+    Result<XxxxDO> fetchDataByRuleId(Long ruleId, Integer page, String jsonContext);
+</pre>

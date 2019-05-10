@@ -1,0 +1,31 @@
+<p>避免Random实例被多线程使用，虽然共享该实例是线程安全的，但会因竞争同一seed 导致的性能下降。</p>
+<p>Description:</p>
+<P>   说明：Random实例包括java.util.Random 的实例或者 Math.random()的方式。</p>
+<p>Examples:</p>
+<pre>
+    Positive example 1：
+    /**
+     * @author caikang
+     * @date 2017/04/07
+     */
+    public class RandomInThread extends Thread {
+        private Random random = new Random();
+        @Override
+        public void run() {
+            long t = random.nextLong();
+        }
+    }
+  
+    Positive example 2：
+    /**
+     * @author caikang
+     * @date 2017/04/07
+     */
+    public class RandomInThread extends Thread {
+        private Random random = ThreadLocalRandom.current();
+        @Override
+        public void run() {
+            long t = random.nextLong();
+        }
+    }
+</pre>

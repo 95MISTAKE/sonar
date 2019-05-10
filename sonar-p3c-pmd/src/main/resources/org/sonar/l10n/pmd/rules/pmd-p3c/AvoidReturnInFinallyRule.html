@@ -1,0 +1,18 @@
+<p>不能在finally块中使用return，finally块中的return返回后方法结束执行，不会再执行try块中的return语句。</p>
+<p>Examples:</p>
+<pre>
+    Negative example:
+    public static Long readFileLength(String fileName) {
+        try {
+            File file = new File(fileName);
+            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
+            return randomAccessFile.length();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        } finally {
+            countDownLatch.countDown();
+            return 0L;
+        }
+    }
+</pre>
+

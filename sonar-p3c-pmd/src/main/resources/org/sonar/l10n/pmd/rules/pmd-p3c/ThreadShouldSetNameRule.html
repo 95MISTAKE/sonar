@@ -1,0 +1,18 @@
+<p>创建线程或线程池时请指定有意义的线程名称，方便出错时回溯。创建线程池的时候请使用带ThreadFactory的构造函数，并且提供自定义ThreadFactory实现或者使用第三方实现。</p>
+<p>Examples:</p>
+<pre>
+    Positive example 1：
+    ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
+        .setNameFormat("demo-pool-%d").build();
+    ExecutorService singleThreadPool = new ThreadPoolExecutor(1, 1,
+        0L, TimeUnit.MILLISECONDS,
+        new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+    singleThreadPool.execute(()-> System.out.println(Thread.currentThread().getName()));
+    singleThreadPool.shutdown();
+
+    Positive example 2：
+    public class TimerTaskThread extends Thread {
+        public TimerTaskThread(){
+        super.setName("TimerTaskThread"); …
+    }
+</pre>

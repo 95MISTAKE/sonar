@@ -1,0 +1,8 @@
+<p>POJO类中的任何布尔类型的变量，都不要加is，否则部分框架解析会引起序列化错误。</p>
+<p>Examples:</p>
+<pre>
+    public class DemoDO{
+        Boolean success;
+        Boolean delete;
+    }
+</pre>

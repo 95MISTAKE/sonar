@@ -1,0 +1,37 @@
+<p>必须回收自定义的ThreadLocal变量，尤其在线程池场景下，线程经常会被复用，如果不清理自定义的 ThreadLocal变量，可能会影响后续业务逻辑和造成内存泄露等问题。尽量在代理中使用try-finally块进行回收。</p>
+<p>Examples:</p>
+<pre>
+    /**
+     * @author caikang
+     * @date 2017/04/07
+     */
+    public class UserHolder {
+        private static final ThreadLocal<User> userThreadLocal = new ThreadLocal<User>();
+        public static void set(User user){
+            userThreadLocal.set(user);
+        }
+        public static User get(){
+            return userThreadLocal.get();
+        }
+        public static void remove(){
+            userThreadLocal.remove();
+        }
+    }
+    /**
+     * @author caikang
+     * @date 2017/04/07
+     */
+    public class UserInterceptor extends HandlerInterceptorAdapter {
+        @Override
+        public boolean preHandle(HttpServletRequest request,
+            HttpServletResponse response, Object handler) throws Exception {
+            UserHolder.set(new User());
+            return true;
+        }
+        @Override
+        public void afterCompletion(HttpServletRequest request,
+            HttpServletResponse response, Object handler, Exception ex) throws Exception {
+            UserHolder.remove();
+        }
+    }
+</pre>

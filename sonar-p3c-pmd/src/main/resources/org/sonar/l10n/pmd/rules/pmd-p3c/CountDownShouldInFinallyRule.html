@@ -1,0 +1,21 @@
+<p>使用CountDownLatch进行异步转同步操作，每个线程退出前必须调用countDown方法，线程执行代码注意catch异常，确保countDown方法可以执行，避免主线程无法执行至await方法，直到超时才返回结果。</p>
+<p>Description:</p>
+<p>   说明：注意，子线程抛出异常堆栈，不能在主线程try-catch到。</p>
+<p>Examples:</p>
+<pre>
+    /**
+     * @author caikang
+     * @date 2017/04/07
+     */
+    public class CountDownExample {
+        public void operate(CountDownLatch countDownLatch){
+            try{
+                System.out.println("business logic");
+            }catch (RuntimeException e){
+                // do something
+            }finally {
+                countDownLatch.countDown();
+            }
+        }
+    }
+</pre>

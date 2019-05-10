@@ -1,0 +1,16 @@
+<p>避免采用取反逻辑运算符。</p>
+<p>Description:</p>
+<p>   说明: 取反逻辑不利于快速理解，并且取反逻辑写法必然存在对应的正向逻辑写法。</p>
+<p>Examples:</p>
+<pre>
+    Negative example:
+    // Use `if (!(x >= 628))` to represent that x is less than 628.
+    if (!(x >= 628)) {
+        // ...
+    }   
+	Positive example:
+    // Use `if (x < 628)` to represent that x is less than 628.
+    if (x < 628)) {
+        // ...
+    }   
+</pre>
