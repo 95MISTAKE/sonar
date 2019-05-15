@@ -1,14 +1,16 @@
 <p>不允许任何魔法值（即未经定义的常量）直接出现在代码中。</p>
-<p>Examples:</p>
+<h2>Examples:</h2>
+<h4>Negative example:</h4>
 <pre>
-    Negative example:
-    //Magic values, except for predefined, are forbidden in coding.
-    if (key.equals("Id#taobao_1")) {
-            //...
-    }
-    Positive example:
-    String KEY_PRE = "Id#taobao_1";
-    if (KEY_PRE.equals(key)) {
-            //...
-    }
+//Magic values, except for predefined, are forbidden in coding.
+if (key.equals("Id#taobao_1")) {
+        //...
+}
+</pre>
+<h4>Positive example:</h4>
+<pre>
+String KEY_PRE = "Id#taobao_1";
+if (KEY_PRE.equals(key)) {
+        //...
+}
 </pre>

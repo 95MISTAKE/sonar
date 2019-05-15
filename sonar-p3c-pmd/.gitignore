@@ -12,6 +12,9 @@ target/
 .project
 .settings
 
+# ---- VS Code
+.vscode
+
 # ---- Mac OS X
 .DS_Store?
 Icon?

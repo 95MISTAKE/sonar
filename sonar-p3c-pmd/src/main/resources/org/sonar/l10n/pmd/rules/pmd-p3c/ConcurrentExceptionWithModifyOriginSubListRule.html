@@ -1,10 +1,10 @@
 <p>在subList场景中，高度注意对原列表的修改，会导致子列表的遍历、增加、删除均产生ConcurrentModificationException异常。</p>
-<p>Examples:</p>
+<h2>Examples:</h2>
+<h4>Negative example:</h4>
 <pre>
-    Negative example:
-    List<String> originList = new ArrayList<String>();
-    originList.add("22");
-    List<String> subList = originList.subList(0, 1);
-    //warn
-    originList.add("22");
+List<String> originList = new ArrayList<String>();
+originList.add("22");
+List<String> subList = originList.subList(0, 1);
+//warn
+originList.add("22");
 </pre>

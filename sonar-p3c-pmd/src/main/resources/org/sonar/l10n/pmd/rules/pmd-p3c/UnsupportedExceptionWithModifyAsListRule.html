@@ -1,12 +1,12 @@
 <p>使用工具类Arrays.asList()把数组转换成集合时，不能使用其修改集合相关的方法，它的add/remove/clear方法会抛出UnsupportedOperationException异常。</p>
-<p>Examples:</p>
+<h2>Examples:</h2>
+<h4>Positive example:</h4>
 <pre>
-    Positive example:
-    List<String> t   = Arrays.asList("a","b","c");
-    //warn
-    t.add("22");
-    //warn
-    t.remove("22");
-    //warn
-    t.clear();
+List<String> t   = Arrays.asList("a","b","c");
+//warn
+t.add("22");
+//warn
+t.remove("22");
+//warn
+t.clear();
 </pre>

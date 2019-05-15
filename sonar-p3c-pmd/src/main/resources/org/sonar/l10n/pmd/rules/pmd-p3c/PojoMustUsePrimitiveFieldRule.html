@@ -2,12 +2,12 @@
   1） 所有的POJO类属性必须使用包装数据类型。<br>
   2） RPC方法的返回值和参数必须使用包装数据类型。<br>
   3） 所有的局部变量推荐使用基本数据类型。</p>
-<p>Description:</p>
-<p>   说明：POJO类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何NPE问题，或者入库检查，都由使用者来保证。</p>
-<p>Examples:</p>
+<h2>Description:</h2>
+<p>说明：POJO类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何NPE问题，或者入库检查，都由使用者来保证。</p>
+<h2>Examples:</h2>
 <pre>
-    public class DemoDO {
-        String str;
-        Integer a;
-    }
+  public class DemoDO {
+      String str;
+      Integer a;
+  }
 </pre>

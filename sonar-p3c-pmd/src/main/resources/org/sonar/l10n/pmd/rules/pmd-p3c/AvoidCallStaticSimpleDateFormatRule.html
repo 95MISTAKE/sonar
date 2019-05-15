@@ -1,28 +1,31 @@
 <p>SimpleDateFormat 是线程不安全的类，一般不要定义为static变量，如果定义为static，必须加锁，或者使用DateUtils工具类。</p>
-<p>Description:</p>
-<p>   说明：如果是JDK8的应用，可以使用instant代替Date，LocalDateTime代替Calendar，DateTimeFormatter代替SimpleDateFormat，官方给出的解释：simple beautiful strong immutable thread-safe。</p>
-<p>Examples:</p>
+<h2>Description:</h2>
+<p>说明：如果是JDK8的应用，可以使用instant代替Date，LocalDateTime代替Calendar，DateTimeFormatter代替SimpleDateFormat，官方给出的解释：simple beautiful strong immutable thread-safe。</p>
+<h2>Examples:</h2>
+<h4>Positive example 1：</h4>
 <pre>
-    Positive example 1：
-    private static final String FORMAT = "yyyy-MM-dd HH:mm:ss";
-    public String getFormat(Date date){
-        SimpleDateFormat dateFormat = new SimpleDateFormat(FORMAT);
-        return sdf.format(date);
+private static final String FORMAT = "yyyy-MM-dd HH:mm:ss";
+public String getFormat(Date date){
+    SimpleDateFormat dateFormat = new SimpleDateFormat(FORMAT);
+    return sdf.format(date);
+}
+</pre>
+<h4>Positive example 2：</h4>
+<pre>
+Positive example 2：
+private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+public void getFormat(){
+    synchronized (sdf){
+    sdf.format(new Date());
+    ….;
+}
+</pre>
+<h4>Positive example 3：</h4>
+<pre>
+private static final ThreadLocal<DateFormat> DATE_FORMATTER = new ThreadLocal<DateFormat>() {
+    @Override
+    protected DateFormat initialValue() {
+        return new SimpleDateFormat("yyyy-MM-dd");
     }
-
-    Positive example 2：
-    private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    public void getFormat(){
-        synchronized (sdf){
-        sdf.format(new Date());
-        ….;
-    }
-
-    Positive example 3：
-    private static final ThreadLocal<DateFormat> DATE_FORMATTER = new ThreadLocal<DateFormat>() {
-        @Override
-        protected DateFormat initialValue() {
-            return new SimpleDateFormat("yyyy-MM-dd");
-        }
-    };
+};
 </pre>

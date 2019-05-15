@@ -1,14 +1,8 @@
 <p>后台输送给页面的变量必须加感叹号，${var}——中间加感叹号！。</p>
-<p>Description:</p>
-<p>   说明：如果var=null或者不存在，那么${var}会直接显示在页面上。</p>
-<p>Examples:</p>
+<h2>Description:</h2>
+<p>说明：如果var=null或者不存在，那么${var}会直接显示在页面上。</p>
+<h2>Examples:</h2>
 <pre>
-    Positive example:
-    List<String> t   = Arrays.asList("a","b","c");
-    //warn
-    t.add("22");
-    //warn
-    t.remove("22");
-    //warn
-    t.clear();
+&lt;input type="text" name="email" value="$!email"/&gt;
+&lt;input type="text" name="email" value="$!{email}"/&gt;
 </pre>

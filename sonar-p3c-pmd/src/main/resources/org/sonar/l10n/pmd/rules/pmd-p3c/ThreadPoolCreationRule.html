@@ -1,37 +1,39 @@
 <p>线程池不允许使用Executors去创建，而是通过ThreadPoolExecutor的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。</p>
-<p>Description:</p>
-<p>   说明：Executors各个方法的弊端：<br>
+<h2>Description:</h2>
+<p>说明：Executors各个方法的弊端：<br>
    1）newFixedThreadPool和newSingleThreadExecutor:<br>
      主要问题是堆积的请求处理队列可能会耗费非常大的内存，甚至OOM。<br>
    2）newCachedThreadPool和newScheduledThreadPool:<br>
      主要问题是线程数最大数是Integer.MAX_VALUE，可能会创建数量非常多的线程，甚至OOM。</p>
-<p>Examples:</p>
+<h2>Examples:</h2>
+<h4>Positive example 1：</h4>
 <pre>
-    Positive example 1：
-    //org.apache.commons.lang3.concurrent.BasicThreadFactory
-    ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1, new BasicThreadFactory.Builder().namingPattern("example-schedule-pool-%d").daemon(true).build());
-
-    Positive example 2：
-    ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
-        .setNameFormat("demo-pool-%d").build();
-    //Common Thread Pool
-    ExecutorService pool = new ThreadPoolExecutor(5, 200,
-        0L, TimeUnit.MILLISECONDS,
-        new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
-    pool.execute(()-> System.out.println(Thread.currentThread().getName()));
-    pool.shutdown();//gracefully shutdown
-
-    Positive example 3：
-    <bean id="userThreadPool"
-          class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
-        <property name="corePoolSize" value="10" />
-        <property name="maxPoolSize" value="100" />
-        <property name="queueCapacity" value="2000" />
-    <property name="threadFactory" value= threadFactory />
-        <property name="rejectedExecutionHandler">
-            <ref local="rejectedExecutionHandler" />
-        </property>
-    </bean>
-    //in code
-    userThreadPool.execute(thread);
+//org.apache.commons.lang3.concurrent.BasicThreadFactory
+ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1, new BasicThreadFactory.Builder().namingPattern("example-schedule-pool-%d").daemon(true).build());
+</pre>
+<h4>Positive example 2：</h4>
+<pre>
+ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
+    .setNameFormat("demo-pool-%d").build();
+//Common Thread Pool
+ExecutorService pool = new ThreadPoolExecutor(5, 200,
+    0L, TimeUnit.MILLISECONDS,
+    new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+pool.execute(()-> System.out.println(Thread.currentThread().getName()));
+pool.shutdown();//gracefully shutdown
+</pre>
+<h4>Positive example 3：</h4>
+<pre>
+&lt;bean id="userThreadPool"
+    class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor"&gt;
+    &lt;property name="corePoolSize" value="10" /&gt;
+    &lt;property name="maxPoolSize" value="100" /&gt;
+    &lt;property name="queueCapacity" value="2000" /&gt;
+    &lt;property name="threadFactory" value= threadFactory /&gt;
+    &lt;property name="rejectedExecutionHandler"&gt;
+        &lt;ref local="rejectedExecutionHandler" /&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+//in code
+userThreadPool.execute(thread);
 </pre>

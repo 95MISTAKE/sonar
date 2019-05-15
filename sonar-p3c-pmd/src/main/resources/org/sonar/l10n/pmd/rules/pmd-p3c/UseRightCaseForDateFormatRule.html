@@ -1,10 +1,12 @@
 <p>日期格式化字符串[%s]使用错误，应注意使用小写‘y’表示当天所在的年，大写‘Y’代表week in which year。</p>
-<p>Description:</p>
-<p>   日期格式化时，yyyy表示当天所在的年，而大写的YYYY代表是week in which year（JDK7之后引入的概念），意思是当天所在的周属于的年份，一周从周日开始，周六结束，只要本周跨年，返回的YYYY就是下一年。</p>
-<p>Examples:</p>
+<h2>Description:</h2>
+<p>日期格式化时，yyyy表示当天所在的年，而大写的YYYY代表是week in which year（JDK7之后引入的概念），意思是当天所在的周属于的年份，一周从周日开始，周六结束，只要本周跨年，返回的YYYY就是下一年。</p>
+<h2>Examples:</h2>
+<h4>Negative example:</h4>
 <pre>
-Negative example:
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");   
-Positive example:
-    SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd HH:mm:ss");   
+SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");   
+</pre>
+<h4>Positive example:</h4>
+<pre>
+SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd HH:mm:ss");   
 </pre>

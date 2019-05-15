@@ -1,16 +1,16 @@
 <p>所有的覆写方法，必须加@Override注解。</p>
-<p>Description:</p>
-<p>   反例：getObject()与get0bject()的问题。一个是字母的O，一个是数字的0，加@Override可以准确判断是否覆盖成功。另外，如果在抽象类中对方法签名进行修改，其实现类会马上编译报错。</p>
-<p>Examples:</p>
+<h2>Description:</h2>
+<p>反例：getObject()与get0bject()的问题。一个是字母的O，一个是数字的0，加@Override可以准确判断是否覆盖成功。另外，如果在抽象类中对方法签名进行修改，其实现类会马上编译报错。</p>
+<h2>Examples:</h2>
 <pre>
-    /**
-     * @author caikang
-     * @date 2016/12/24
-     */
-    public class MissingOverrideAnnotationRule extends AbstractEclipseRule {
-        @Override
-        public Object visit(ASTCompilationUnit node, Object data) {
-            return super.visit(node, data);
-        }
+/**
+* @author caikang
+* @date 2016/12/24
+*/
+public class MissingOverrideAnnotationRule extends AbstractEclipseRule {
+    @Override
+    public Object visit(ASTCompilationUnit node, Object data) {
+        return super.visit(node, data);
     }
+}
 </pre>
